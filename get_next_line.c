@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/07 15:07:49 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/07 16:48:21 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,11 @@ static char	*keep_reading(char *findnl, int fd)
 {
 	ssize_t	alr_read;
 	
-	while (!ft_strchr(findnl, '\n'))
-	{
-		alr_read = read(fd, findnl, BUFFER_SIZE);
-		if (alr_read < 0)
-			return (NULL);
-		findnl[alr_read]  = '\0';
+	alr_read = read(fd, findnl, BUFFER_SIZE);
+	if (alr_read < 0)
+		return (NULL);
+	findnl[alr_read]  = '\0';
 		
-	}
 }
 
 char	*get_next_line(int fd)
@@ -58,6 +55,5 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	result = NULL;
-	if (find_nl != NULL)
-		result = look_for_line(result, find_nl);
+	if (find_nl)
 }
