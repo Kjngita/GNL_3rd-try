@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:42 by gita              #+#    #+#             */
-/*   Updated: 2025/06/05 17:18:00 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/07 15:04:55 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,26 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (duo);
 }
 
+char	*ft_substr(char *str, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*babystr;
+
+	if (str == NULL)
+		return (NULL);
+	if (len > (ft_strlen - start))
+		len = ft_strlen - start;
+	if (start > ft_strlen(str))
+		len = 0;
+	babystr = malloc (len + 1);
+	if (babystr == NULL)
+		return (NULL);
+	i = 0;
+	while (len > 0)
+	{
+		babystr[i++] = str[start++];
+		len--;
+	}
+	babystr[i] = '\0';
+	return (babystr);
+}

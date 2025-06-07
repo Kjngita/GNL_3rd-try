@@ -6,13 +6,37 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/05 22:29:33 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/07 15:07:49 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*keep_reading(char *findnl, int fd)
+static char	*look_for_line(char *result, char *findnl)
+{
+	size_t	i;
+	char	*join;
+	char	*before_nl;
+
+	if (findnl == NULL)
+		return (result);
+	if (!ft_strchr(findnl, '\n'))
+	{
+		join = ft_strjoin(result, findnl);
+		if (join == NULL)
+		{
+			free(result);
+			return (NULL);
+		}
+	}
+	if (ft_strchr(findnl, '\n'))
+	{
+		
+	}
+	return (join);
+}
+
+static char	*keep_reading(char *findnl, int fd)
 {
 	ssize_t	alr_read;
 	
@@ -35,8 +59,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	result = NULL;
 	if (find_nl != NULL)
-	{
-		result = ft_strchr(find_nl, '\n');
-		return (result);
-	}
+		result = look_for_line(result, find_nl);
 }

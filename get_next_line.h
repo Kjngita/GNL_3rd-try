@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:13:59 by gita              #+#    #+#             */
-/*   Updated: 2025/06/05 17:18:07 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/07 15:05:05 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(char *str);
 char	*ft_strchr(char	*s, unsigned int c);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *str, unsigned int start, size_t len);
 
 #endif
