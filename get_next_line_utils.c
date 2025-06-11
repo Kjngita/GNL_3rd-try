@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:42 by gita              #+#    #+#             */
-/*   Updated: 2025/06/07 15:04:55 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/11 19:54:12 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	duo = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (duo == NULL)
 		return (NULL);
+	i = 0;
 	while (s1[i])
 	{
 		duo[i] = s1[i];
