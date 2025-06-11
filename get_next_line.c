@@ -15,14 +15,20 @@
 static char	*line_extraction(char *whole, char *chunk)
 {
 	char	*before_nl;
+	char *theline;
 	size_t	i;
 
+	i = 0;
 	while (chunk[i] && chunk[i] != '\n')
 		i++;
 	if (chunk[i] == '\n')
 		i++;
 	before_nl = ft_substr(chunk, 0, i);
-	whole = ft_strjoin(whole, before_nl);
+if !before_nl return (whole);
+	theline = ft_strjoin(whole, before_nl);
+	
+	free (whole);
+	return (theline);
 }
 
 static char	*keep_joining(char *result, char *findnl)
@@ -33,7 +39,7 @@ static char	*keep_joining(char *result, char *findnl)
 		return (result);
 	if (ft_strchr(findnl, '\n'))
 	{
-		return (line_extraction())
+		return (line_extraction(result, findnl));
 		// join = line_extraction(result, findnl);
 		// if (join == NULL)
 		// {
