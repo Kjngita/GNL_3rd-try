@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/13 15:41:16 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/13 15:47:58 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*keep_joining(char *result, char *findnl)
 		return (result);
 	if (ft_strchr(findnl, '\n'))
 	{
-		return (line_extraction())
+		return (line_extraction(result, findnl));
 		// join = line_extraction(result, findnl);
 		// if (join == NULL)
 		// {
