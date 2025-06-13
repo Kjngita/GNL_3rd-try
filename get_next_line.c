@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/13 15:39:48 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/13 15:41:16 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 static char	*line_extraction(char *whole, char *chunk)
 {
 	char	*before_nl;
+	char	*theline;
 	size_t	i;
 
+	i = 0;
 	while (chunk[i] && chunk[i] != '\n')
 		i++;
 	if (chunk[i] == '\n')
 		i++;
 	before_nl = ft_substr(chunk, 0, i);
-	whole = ft_strjoin(whole, before_nl);
+	if (!before_nl)
+		return (whole);
+	theline = ft_strjoin(whole, before_nl);
+	
+	free (whole);
+	return (theline);
 }
 
 static char	*keep_joining(char *result, char *findnl)
