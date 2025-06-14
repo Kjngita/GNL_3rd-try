@@ -1,0 +1,6 @@
+Me:		Update
+Windows:	Update
+Me:		Shut down
+Windows:	Shut down
+Me:		Update and shutdown
+Windows:	Update and restart
