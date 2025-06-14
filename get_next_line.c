@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/13 16:42:41 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/14 19:59:54 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static char	*keep_joining(char *result, char *findnl)
 		free(result);
 		return (NULL);
 	}
-	free(result);
 	return (join);
 }
+
 static ssize_t	keep_reading(char *findingnl, int fd)
 {
 	ssize_t	alr_read;
@@ -89,10 +89,15 @@ char	*get_next_line(int fd)
 		{
 			result = keep_joining(result, find_nl);
 			if (!result)
-				return(NULL);
+				return (NULL);
+			if (ft_strchr(result, '\n'))
+				break ;
 		}
-		if (keep_reading <= 0)
+		if (keep_reading(find_nl, fd) <= 0)
 			break ;
 	}
+	if (result != NULL && *result != '\0')
+		return (result);
+	free (result);
+	return (NULL);
 }
-

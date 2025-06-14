@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:42 by gita              #+#    #+#             */
-/*   Updated: 2025/06/11 19:54:12 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/14 19:51:15 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ size_t	ft_strlen(char *str)
 	len = 0;
 	while (str[len])
 		len++;
-	return (len);	
+	return (len);
 }
 
-char	*ft_strchr(char	*s, unsigned int c)
+char	*ft_strchr(char	*s, unsigned char c)
 {
 	size_t	i;
 
@@ -52,7 +52,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (duo == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (i < ft_strlen(s1))
 	{
 		duo[i] = s1[i];
 		i++;
@@ -61,6 +61,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[p])
 		duo[i++] = s2[p++];
 	duo[i] = '\0';
+	free (s1);
 	return (duo);
 }
 
@@ -71,8 +72,8 @@ char	*ft_substr(char *str, unsigned int start, size_t len)
 
 	if (str == NULL)
 		return (NULL);
-	if (len > (ft_strlen - start))
-		len = ft_strlen - start;
+	if (len > (ft_strlen(str) - start))
+		len = ft_strlen(str) - start;
 	if (start > ft_strlen(str))
 		len = 0;
 	babystr = malloc (len + 1);
