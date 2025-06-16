@@ -6,11 +6,18 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:12:26 by gita              #+#    #+#             */
-/*   Updated: 2025/06/14 22:16:22 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/16 21:54:44 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*wipe_this(char *trash)
+{
+	free (trash);
+	trash = NULL;
+	return (NULL);
+}
 
 char	*get_next_line(int fd)
 {
@@ -35,18 +42,7 @@ char	*get_next_line(int fd)
 	}
 	if (result != NULL && *result != '\0')
 		return (result);
-	free (result);
-	result = NULL;
-	return (NULL);
-}
-
-static char	*wipe_this(char *trash, char *garbage)
-{
-	free (trash);
-	trash = NULL;
-	free (garbage);
-	garbage = NULL;
-	return (NULL);
+	return (wipe_this(result));
 }
 
 char	*keep_joining(char *result, char *findnl)
@@ -60,18 +56,21 @@ char	*keep_joining(char *result, char *findnl)
 	{
 		first_part = line_extract_n_update_buf(findnl);
 		if (!first_part)
-			return (wipe_this(result, NULL));
+			return (wipe_this(result));
 		join = ft_strjoin(result, first_part);
 		if (join == NULL)
-			return (wipe_this(result, first_part));
-		free (result);
-		free (first_part);
+		{
+			wipe_this(result);
+			return (wipe_this(first_part));
+		}
+		wipe_this (result);
+		wipe_this (first_part);
 		return (join);
 	}
 	join = ft_strjoin(result, findnl);
 	if (join == NULL)
-		return (wipe_this(result, NULL));
-	free (result);
+		return (wipe_this(result));
+	wipe_this (result);
 	return (join);
 }
 
