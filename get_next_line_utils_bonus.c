@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:41:03 by gita              #+#    #+#             */
-/*   Updated: 2025/06/16 21:34:39 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/17 15:00:48 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!unite)
 		return (NULL);
 	i = 0;
-	while (i++ < ft_strlen(s1))
+	while (i < ft_strlen(s1))
+	{
 		unite[i] = s1[i];
+		i++;
+	}
 	p = 0;
 	while (s2[p])
 		unite[i++] = s2[p++];

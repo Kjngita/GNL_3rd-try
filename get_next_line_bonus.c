@@ -6,7 +6,7 @@
 /*   By: gita <gita@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 23:37:33 by gita              #+#    #+#             */
-/*   Updated: 2025/06/16 21:42:23 by gita             ###   ########.fr       */
+/*   Updated: 2025/06/17 14:56:31 by gita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ static char	*wipe_this(char *trash)
 
 char	*get_next_line(int fd)
 {
-	char	*find_nl[FDNUM][BUFFER_SIZE + 1];
-	char	*result;
+	static char	find_nl[FDNUM][BUFFER_SIZE + 1];
+	char		*result;
 
 	if (fd < 0 || fd > FDNUM || BUFFER_SIZE <= 0)
 		return (NULL);
 	result = NULL;
 	while (1)
 	{
-		if (*find_nl[fd])
+		if (find_nl[fd][0] != 0)
 		{
-			result = keep_joining(result, *find_nl[fd]);
+			result = keep_joining(result, find_nl[fd]);
 			if (result == NULL)
 				return (NULL);
 			if (ft_strchr(result, '\n'))
 				break ;
 		}
-		if (keep_reading(*find_nl[fd], fd) <= 0)
+		if (keep_reading(find_nl[fd], fd) <= 0)
 			break ;
 	}
 	if (result != NULL && result[0] != 0)
@@ -74,6 +74,9 @@ char	*keep_joining(char *res, char *findnl)
 			wipe_this(firstpart);
 			return (wipe_this(res));
 		}
+		wipe_this(firstpart);
+		wipe_this(res);
+		return (joined);
 	}
 	joined = ft_strjoin(res, findnl);
 	if (!joined)
